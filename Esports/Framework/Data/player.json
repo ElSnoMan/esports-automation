@@ -1,0 +1,21 @@
+﻿{
+  "id": 1,
+  "summoner": "Impact",
+  "firstName": "Eon-Young",
+  "lastName": "Jeong",
+  "position": "Top",
+  "team": "Team Liquid",
+  "stats": {
+    "split": "2018 Summer Split",
+    "stage": "Regular Season",
+    "kda": 3.9,
+    "csPerMin": 8.8,
+    "killParticipation": 71.5,
+    "totalKills": 34,
+    "totalDeaths": 29,
+    "totalAssists": 79,
+    "totalCs": 3840,
+    "minutesPlayed": 438,
+    "gamesPlayed": 14
+  }
+}

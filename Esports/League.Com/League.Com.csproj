@@ -11,4 +11,7 @@
   <ItemGroup>
     <Folder Include="Pages\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj" />
+  </ItemGroup>
 </Project>

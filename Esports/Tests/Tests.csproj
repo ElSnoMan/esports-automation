@@ -18,4 +18,8 @@
     <Folder Include="Settings\" />
     <Folder Include="_drivers\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj" />
+    <ProjectReference Include="..\League.Com\League.Com.csproj" />
+  </ItemGroup>
 </Project>
