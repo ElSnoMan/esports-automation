@@ -11,8 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Database\" />
     <Folder Include="Model\" />
-    <Folder Include="Interface\" />
   </ItemGroup>
 </Project>

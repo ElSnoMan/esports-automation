@@ -1,0 +1,38 @@
+﻿{
+  "stats": [
+    {
+      "id": 45,
+      "name": "Impact",
+      "position": "toplane",
+      "playerSlug": "impact",
+      "team": "TL",
+      "gamesPlayed": 10,
+      "kda": 6.625,
+      "kills": 19,
+      "deaths": 16,
+      "assists": 87,
+      "killParticipation": 0.7681159420289855,
+      "csPerMin": 7.729004645336396,
+      "cs": 2468,
+      "minutesPlayed": 319,
+      "teamSlug": "team-liquid"
+    },
+    {
+      "id": 60,
+      "name": "Bjergsen",
+      "position": "midlane",
+      "playerSlug": "bjergsen",
+      "team": "TSM",
+      "gamesPlayed": 4,
+      "kda": 6.666666666666667,
+      "kills": 8,
+      "deaths": 3,
+      "assists": 12,
+      "killParticipation": 0.8695652173913043,
+      "csPerMin": 10.308003029537996,
+      "cs": 1361,
+      "minutesPlayed": 132,
+      "teamSlug": "team-solomid"
+    }
+  ]
+}

@@ -2,11 +2,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Tests.Settings;
+using Tests.Base;
 
 namespace Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest1 : TestBase
     {
         IWebDriver Driver;
 
@@ -28,7 +29,7 @@ namespace Tests
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("selenium")]
         public void TestMethod1()
         {
         }

@@ -1,17 +1,35 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Framework.Database;
-using Framework.Interface;
+using Tests.Base;
 
 namespace Tests
 {
     [TestClass]
-    public class Unit
+    public class Unit : TestBase
     {
         [TestMethod, TestCategory("unit")]
-        public void Player_service_can_get_player()
+        public void Player_service_can_get_players()
         {
             IPlayerService service = new LocalPlayerService();
-            Assert.AreEqual(service.GetPlayer().Summoner, "Impact");
+            Assert.IsNotNull(service.GetAllPlayerStats());
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void Player_service_can_get_player_by_id()
+        {
+            IPlayerService service = new LocalPlayerService();
+            var player = service.GetPlayerStatsById(60);
+
+            Assert.AreEqual(player.Name, "Bjergsen");
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void Player_service_can_get_player_by_name()
+        {
+            IPlayerService service = new LocalPlayerService();
+            var player = service.GetPlayerStatsByName("Bjergsen");
+
+            Assert.AreEqual(player.Id, 60);
         }
     }
 }
