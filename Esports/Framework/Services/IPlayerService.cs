@@ -1,7 +1,7 @@
 ﻿using Framework.Model;
 using System.Collections.Generic;
 
-namespace Framework.Database
+namespace Framework.Services
 {
     public interface IPlayerService
     {

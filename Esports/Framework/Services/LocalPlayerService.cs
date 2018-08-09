@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Framework.Database
+namespace Framework.Services
 {
     public class LocalPlayerService : IPlayerService
     {
