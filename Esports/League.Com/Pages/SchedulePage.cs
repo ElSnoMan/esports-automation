@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Threading;
 using OpenQA.Selenium;
-using System.Threading;
 
 namespace League.Com.Pages
 {
@@ -15,9 +14,9 @@ namespace League.Com.Pages
             Map = new SchedulePageMap(driver);
         }
 
-        public void GoTo()
+        public void Goto()
         {
-            Map.Schedule.Click();
+            Map.ScheduleTab.Click();
             WaitForPageLoad();
         }
 
@@ -36,8 +35,8 @@ namespace League.Com.Pages
             _driver = driver;
         }
 
-        public IWebElement Schedule => _driver.FindElement(By.CssSelector("[href='/en_US/na-lcs/na_2018_summer/schedule']"));
+        public IWebElement ScheduleTab => _driver.FindElement(By.CssSelector("[href='/en_US/na-lcs/na_2018_summer/schedule']"));
 
-        public IWebElement RegSeason => _driver.FindElement(By.CssSelector("[data-dropdown='drop-2']"));
+        public IWebElement StageDropdown => _driver.FindElement(By.CssSelector("[data-dropdown='drop-2']"));
     }
 }

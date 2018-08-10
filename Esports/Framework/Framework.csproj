@@ -12,5 +12,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Model\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
 </Project>
