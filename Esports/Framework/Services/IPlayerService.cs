@@ -11,4 +11,5 @@ namespace Framework.Services
 
         PlayerStats GetPlayerStatsByName(string name);
     }
+
 }
