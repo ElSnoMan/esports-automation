@@ -15,7 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Base\" />
+    <Folder Include="_drivers_win\" />
     <Folder Include="Settings\" />
-    <Folder Include="_drivers\" />
+    <Folder Include="_drivers_mac\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj" />
+    <ProjectReference Include="..\League.Com\League.Com.csproj" />
   </ItemGroup>
 </Project>

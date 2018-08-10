@@ -7,5 +7,10 @@
   <ItemGroup>
     <PackageReference Include="Selenium.WebDriver" Version="3.14.0" />
     <PackageReference Include="Selenium.Support" Version="3.14.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 </Project>
