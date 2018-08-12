@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Framework.Model;
@@ -15,7 +16,7 @@ namespace Framework.Services
                 // groupName=regular_season
                 // tournamentId=8531db79-ade3-4294-ae4a-ef639967c393
 
-        public PlayerService(string groupName, string tournamentId)
+        public PlayerService(string groupName, Guid tournamentId)
         {
             GroupName = groupName;
             TournamentId = tournamentId;
@@ -26,7 +27,7 @@ namespace Framework.Services
         string _playerStatsEndpoint => _baseUrl + "/tournamentPlayerStats";
 
         public string GroupName { get; private set; }
-        public string TournamentId { get; private set; }
+        public Guid TournamentId { get; private set; }
 
         public List<PlayerStats> GetAllPlayerStats()
         {

@@ -1,4 +1,5 @@
-﻿using Framework.Services;
+﻿using System;
+using Framework.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Base;
 
@@ -13,14 +14,14 @@ namespace Tests
         [DataTestMethod, TestCategory("unit")]
         public void Player_service_can_get_players(string stage)
         {
-            IPlayerStatsService service = new PlayerService(stage, "8531db79-ade3-4294-ae4a-ef639967c393");
+            IPlayerStatsService service = new PlayerService(stage, new Guid("8531db79-ade3-4294-ae4a-ef639967c393"));
             Assert.IsNotNull(service.GetAllPlayerStats());
         }
 
         [TestMethod, TestCategory("unit")]
         public void Player_service_can_get_player_by_id()
         {
-            IPlayerStatsService service = new PlayerService("regular_season", "8531db79-ade3-4294-ae4a-ef639967c393");
+            IPlayerStatsService service = new PlayerService("regular_season", new Guid("8531db79-ade3-4294-ae4a-ef639967c393"));
             var player = service.GetPlayerStatsById(id: 60);
 
             Assert.AreEqual("Bjergsen", player.Name);
@@ -31,7 +32,7 @@ namespace Tests
         {
             IPlayerStatsService service = new PlayerService(
                 groupName: "regular_season",
-                tournamentId: "8531db79-ade3-4294-ae4a-ef639967c393"
+                tournamentId: new Guid("8531db79-ade3-4294-ae4a-ef639967c393")
             );
             var player = service.GetPlayerStatsByName(name: "Bjergsen");
 
