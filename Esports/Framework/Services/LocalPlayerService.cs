@@ -1,13 +1,13 @@
-﻿using Framework.Model;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Framework.Model;
+using Newtonsoft.Json;
 
 namespace Framework.Services
 {
-    public class LocalPlayerService : IPlayerService
+    public class LocalPlayerService : IPlayerStatsService
     {
         public LocalPlayerService()
         {

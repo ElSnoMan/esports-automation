@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Extensions;
 
-namespace League.Com.Driver_Core
+namespace League.Com.DriverCore
 {
     public class Driver
     {

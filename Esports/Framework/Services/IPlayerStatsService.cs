@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Framework.Services
 {
-    public interface IPlayerService
+    public interface IPlayerStatsService
     {
         List<PlayerStats> GetAllPlayerStats();
 

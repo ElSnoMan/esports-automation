@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Framework.Services;
+﻿using Framework.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Base;
 
 namespace Tests
@@ -7,29 +7,35 @@ namespace Tests
     [TestClass]
     public class Unit : TestBase
     {
-        [TestMethod, TestCategory("unit")]
-        public void Player_service_can_get_players()
+        [DataRow("regular_season")]
+        [DataRow("playoffs")]
+        [DataRow("regionals")]
+        [DataTestMethod, TestCategory("unit")]
+        public void Player_service_can_get_players(string stage)
         {
-            IPlayerService service = new LocalPlayerService();
+            IPlayerStatsService service = new PlayerService(stage, "8531db79-ade3-4294-ae4a-ef639967c393");
             Assert.IsNotNull(service.GetAllPlayerStats());
         }
 
         [TestMethod, TestCategory("unit")]
         public void Player_service_can_get_player_by_id()
         {
-            IPlayerService service = new LocalPlayerService();
-            var player = service.GetPlayerStatsById(60);
+            IPlayerStatsService service = new PlayerService("regular_season", "8531db79-ade3-4294-ae4a-ef639967c393");
+            var player = service.GetPlayerStatsById(id: 60);
 
-            Assert.AreEqual(player.Name, "Bjergsen");
+            Assert.AreEqual("Bjergsen", player.Name);
         }
 
         [TestMethod, TestCategory("unit")]
         public void Player_service_can_get_player_by_name()
         {
-            IPlayerService service = new LocalPlayerService();
-            var player = service.GetPlayerStatsByName("Bjergsen");
+            IPlayerStatsService service = new PlayerService(
+                groupName: "regular_season",
+                tournamentId: "8531db79-ade3-4294-ae4a-ef639967c393"
+            );
+            var player = service.GetPlayerStatsByName(name: "Bjergsen");
 
-            Assert.AreEqual(player.Id, 60);
+            Assert.AreEqual(60, player.Id);
         }
     }
 }
