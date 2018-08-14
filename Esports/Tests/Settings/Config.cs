@@ -14,10 +14,10 @@ namespace Tests.Settings
             {
                 if (Environment.OSVersion.Platform.ToString().Contains("Win"))
                 {
-                    return @"tests\_drivers_win";
+                    return @"tests/_drivers_win";
                 }
 
-                return @"tests\_drivers_mac";
+                return @"tests/_drivers_mac";
             }
         }
     }

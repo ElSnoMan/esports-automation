@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Tests.Settings;
@@ -6,12 +6,12 @@ using Tests.Base;
 
 namespace Tests
 {
-    [TestClass]
+    [TestFixture, Parallelizable]
     public class UnitTest1 : TestBase
     {
         IWebDriver Driver;
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             var options = new ChromeOptions();
@@ -19,7 +19,7 @@ namespace Tests
             Driver = new ChromeDriver(Config.DRIVERPATH, options);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             if (Driver != null)
@@ -27,11 +27,6 @@ namespace Tests
                 Driver.Quit();
                 Driver.Dispose();
             }
-        }
-
-        [TestMethod, TestCategory("selenium")]
-        public void TestMethod1()
-        {
         }
     }
 }
