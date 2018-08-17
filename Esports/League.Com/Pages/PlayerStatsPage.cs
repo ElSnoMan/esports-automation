@@ -1,15 +1,16 @@
 ﻿using System.Linq;
 using System.Threading;
+using League.Com.Pages.Base;
 using OpenQA.Selenium;
 
 namespace League.Com.Pages
 {
-    public class PlayerStatsPage
+    public class PlayerStatsPage : PageBase
     {
         readonly IWebDriver _driver;
         public readonly PlayerStatsPageMap Map;
 
-        public PlayerStatsPage(IWebDriver driver)
+        public PlayerStatsPage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
             Map = new PlayerStatsPageMap(driver);
