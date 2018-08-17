@@ -1,14 +1,15 @@
 ﻿using System.Threading;
+using League.Com.Pages.Base;
 using OpenQA.Selenium;
 
 namespace League.Com.Pages
 {
-    public class SchedulePage
+    public class SchedulePage : PageBase
     {
         readonly IWebDriver _driver;
         public readonly SchedulePageMap Map;
 
-        public SchedulePage(IWebDriver driver)
+        public SchedulePage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
             Map = new SchedulePageMap(driver);
@@ -16,7 +17,7 @@ namespace League.Com.Pages
 
         public void Goto()
         {
-            Map.ScheduleTab.Click();
+            EsportsMenu.GotoNALCS();
             WaitForPageLoad();
         }
 
