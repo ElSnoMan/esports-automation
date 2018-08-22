@@ -1,4 +1,5 @@
-using System;
+using System.IO;
+using System.Reflection;
 
 namespace Tests.Base
 {
@@ -6,10 +7,9 @@ namespace Tests.Base
     {
         protected TestBase()
         {
-            if (!Environment.CurrentDirectory.ToLower().EndsWith("esports"))
-            {
-                Environment.CurrentDirectory = "../../../../";
-            }
+            var assembly = Assembly.GetExecutingAssembly().FullName;
+            var path = Path.Combine(assembly, "../../../../../");
+            Directory.SetCurrentDirectory(path);
         }
     }
 }
