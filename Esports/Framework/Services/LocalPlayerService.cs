@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Framework.Services
 {
-    public class LocalPlayerService : IPlayerStatsService
+    public class LocalPlayerService
     {
         public LocalPlayerService()
         {

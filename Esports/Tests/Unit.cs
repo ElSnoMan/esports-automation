@@ -5,36 +5,37 @@ using Tests.Base;
 
 namespace Tests
 {
-    [TestFixture, Parallelizable]
+    [TestFixture]
     public class Unit : TestBase
     {
         [TestCase("regular_season")]
         [TestCase("playoffs")]
         [TestCase("regionals")]
-        [Test, Parallelizable, Category("unit"), Category("1")]
+        [Test, Category("unit"), Category("1")]
         public void Player_service_can_get_players(string stage)
         {
-            IPlayerStatsService service = new PlayerService(stage, new Guid("8531db79-ade3-4294-ae4a-ef639967c393"));
-            Assert.IsNotNull(service.GetAllPlayerStats());
+            IPlayerStatsService service = new PlayerService();
+            Assert.IsNotNull(service.GetAllPlayerStats(stage, new Guid("8531db79-ade3-4294-ae4a-ef639967c393")));
         }
 
-        [Test, Parallelizable, Category("unit"), Category("2")]
+        [Test, Category("unit"), Category("2")]
         public void Player_service_can_get_player_by_id()
         {
-            IPlayerStatsService service = new PlayerService("regular_season", new Guid("8531db79-ade3-4294-ae4a-ef639967c393"));
-            var player = service.GetPlayerStatsById(id: 60);
+            IPlayerStatsService service = new PlayerService();
+            var player = service.GetPlayerStatsById("regular_season", new Guid("8531db79-ade3-4294-ae4a-ef639967c393"), id: 60);
 
             Assert.AreEqual("Bjergsen", player.Name);
         }
 
-        [Test, Parallelizable, Category("unit"), Category("3")]
+        [Test, Category("unit"), Category("3")]
         public void Player_service_can_get_player_by_name()
         {
-            IPlayerStatsService service = new PlayerService(
+            IPlayerStatsService service = new PlayerService();
+            var player = service.GetPlayerStatsByName(
                 groupName: "regular_season",
-                tournamentId: new Guid("8531db79-ade3-4294-ae4a-ef639967c393")
+                tournamentId: new Guid("8531db79-ade3-4294-ae4a-ef639967c393"),
+                name: "Bjergsen"
             );
-            var player = service.GetPlayerStatsByName(name: "Bjergsen");
 
             Assert.AreEqual(60, player.Id);
         }
