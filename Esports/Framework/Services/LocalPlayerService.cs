@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Framework.Model;
@@ -34,7 +33,7 @@ namespace Framework.Services
         private List<PlayerStats> DeserializeLocalJson()
         {
             dynamic json = JsonConvert.DeserializeObject(
-                File.ReadAllText($"{Environment.CurrentDirectory}/Framework/Data/tournamentPlayerStats.json")
+                File.ReadAllText($"{Directory.GetCurrentDirectory()}/Framework/Data/tournamentPlayerStats.json")
             );
 
             return json["stats"].ToObject<List<PlayerStats>>();

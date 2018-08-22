@@ -1,0 +1,60 @@
+{
+  "object": {
+    "height": 11,
+    "width": 8
+  },
+
+  "array": [
+    "apples",
+    "oranges",
+    "bananas"
+  ],
+
+  "array_of_objects": [
+    {
+      "id": 1,
+      "name": "Han Solo"
+    },
+    {
+      "id": 2,
+      "name": "Charlie Brown"
+    }
+  ],
+
+  "complex": [
+    {
+      "name": "Anthony Hopkins",
+      "email": "anthony@hopkins.com",
+      "age": 73,
+      "roles": [
+        "actor",
+        "writer",
+        "director"
+      ],
+      "address": {
+        "addr1": "123 Fun Ave",
+        "addr2": "Apt 2",
+        "city": "Smallville",
+        "state": "Arkansas",
+        "postal": 12345
+      }
+    },
+    {
+      "name": "Donald Trump",
+      "email": "donnie@trump.com",
+      "age": 60,
+      "roles": [
+        "reality star",
+        "tweet master",
+        "president"
+      ],
+      "address": {
+        "addr1": "White House",
+        "addr2": null,
+        "city": "wrong",
+        "state": "you're fake news",
+        "postal": 12345
+      }
+    }
+  ]
+}
