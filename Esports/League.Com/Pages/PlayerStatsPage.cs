@@ -21,28 +21,30 @@ namespace League.Com.Pages
 
         public void Goto()
         {
+            EsportsMenu.GotoNALCS();
             Map.StatsTab.Click();
             WaitForPageLoad();
         }
 
-        public PlayerStats GetPlayerName(string name)
+        public PlayerStats GetPlayerStatsByName(string name)
         {
             var row = Map.PlayerRows.FirstOrDefault(r => r.Text.Contains(name));
             var cells = row.FindElements(By.TagName("td"));
-            var player = new PlayerStats();
-
-            player.Name = cells[0].Text;
-            player.Team = cells[1].Text;
-            player.Position = cells[2].Text;
-            player.KDA = Convert.ToDouble(cells[3].Text);
-            player.Kills = Convert.ToInt32(cells[4].Text);
-            player.Deaths = Convert.ToInt32(cells[5].Text);
-            player.Assists = Convert.ToInt32(cells[6].Text);
-            player.KillParticipation = Convert.ToDouble(cells[7].Text);
-            player.CsPerMin = Convert.ToDouble(cells[8].Text);
-            player.Cs = Convert.ToInt32(cells[9].Text);
-            player.MinutesPlayed = Convert.ToInt32(cells[10].Text);
-            player.GamesPlayed = Convert.ToInt32(cells[11].Text);
+            var player = new PlayerStats
+            {
+                Name = cells[0].Text,
+                Team = cells[1].Text,
+                Position = cells[2].Text,
+                KDA = double.Parse(cells[3].Text),
+                Kills = _parseInt(cells[4].Text),
+                Deaths = _parseInt(cells[5].Text),
+                Assists = _parseInt(cells[6].Text),
+                KillParticipation = double.Parse(cells[7].Text.Replace("%", "")),
+                CsPerMin = double.Parse(cells[8].Text),
+                Cs = _parseInt(cells[9].Text.Replace(",", "")),
+                MinutesPlayed = _parseInt(cells[10].Text),
+                GamesPlayed = _parseInt(cells[11].Text)
+            };
 
             return player;
         }
@@ -64,6 +66,15 @@ namespace League.Com.Pages
             WaitForLoad();
         }
 
+        public void SelectStage(string name)
+        {
+            Map.StageDropDown.Click();
+            Map.StageMenu.FindElements(By.TagName("a"))
+               .FirstOrDefault(stage => stage.Text.Contains(name)).Click();
+
+            WaitForLoad();
+        }
+
         public void WaitForPageLoad()
         {
             Thread.Sleep(1000);
@@ -75,6 +86,11 @@ namespace League.Com.Pages
             Thread.Sleep(1000);
         }
 
+        int _parseInt(string text)
+        {
+            var parsed = int.TryParse(text, out int result);
+            return parsed ? result : 0;
+        }
     }
 
     public class PlayerStatsPageMap
@@ -92,6 +108,6 @@ namespace League.Com.Pages
         public IWebElement StageDropDown => _driver.FindElement(By.XPath("//a[@data-dropdown='drop-2']"));
         public IWebElement StageMenu => _driver.FindElement(By.Id("drop-2"));
 
-        public IList<IWebElement>PlayerRows  => _driver.FindElements(By.XPath("//tbody//tr"));
+        public IList<IWebElement>PlayerRows => _driver.FindElements(By.XPath("//tbody//tr"));
     }
 }
