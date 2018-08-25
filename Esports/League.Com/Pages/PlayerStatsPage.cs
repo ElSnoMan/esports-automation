@@ -5,25 +5,27 @@ using System.Threading;
 using Framework.Model;
 using League.Com.Pages.Base;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace League.Com.Pages
 {
     public class PlayerStatsPage : PageBase
     {
         readonly IWebDriver _driver;
+        readonly WebDriverWait _wait;
         public readonly PlayerStatsPageMap Map;
 
-        public PlayerStatsPage(IWebDriver driver) : base(driver)
+        public PlayerStatsPage(IWebDriver driver, WebDriverWait wait) : base(driver)
         {
             _driver = driver;
+            _wait = wait;
             Map = new PlayerStatsPageMap(driver);
         }
 
         public void Goto()
         {
             EsportsMenu.GotoNALCS();
-            Map.StatsTab.Click();
-            WaitForPageLoad();
+            SwitchTo();
         }
 
         public PlayerStats GetPlayerStatsByName(string name)
@@ -55,7 +57,7 @@ namespace League.Com.Pages
             Map.SplitMenu.FindElements(By.TagName("a"))
                .FirstOrDefault(split => split.Text.Contains(name)).Click();
 
-            WaitForLoad();
+            WaitForStatsLoad();
         }
 
         public void SelectStage(int index)
@@ -63,7 +65,7 @@ namespace League.Com.Pages
             Map.StageDropDown.Click();
             Map.StageMenu.FindElements(By.TagName("a"))[index].Click();
 
-            WaitForLoad();
+            WaitForStatsLoad();
         }
 
         public void SelectStage(string name)
@@ -72,18 +74,32 @@ namespace League.Com.Pages
             Map.StageMenu.FindElements(By.TagName("a"))
                .FirstOrDefault(stage => stage.Text.Contains(name)).Click();
 
-            WaitForLoad();
+            WaitForStatsLoad();
+        }
+
+        public void SwitchTo()
+        {
+            _wait.Until((drvr) => Map.StatsTab.Displayed);
+            Map.StatsTab.Click();
+            WaitForPageLoad();
         }
 
         public void WaitForPageLoad()
         {
-            Thread.Sleep(1000);
+            _wait.Until((drvr) => Map.PageSelectionContainer.Displayed);
         }
 
-        void WaitForLoad()
+        public void WaitForStatsLoad()
         {
-            // wait for subview to load
-            Thread.Sleep(1000);
+            try
+            {
+                var comingsoon = _driver.FindElement(By.CssSelector(".placeholder-page-container"));
+                Console.WriteLine(comingsoon.Text);
+            }
+            catch
+            {
+                _wait.Until((drvr) => Map.StatsContainer.Displayed);
+            }
         }
 
         int _parseInt(string text)
@@ -102,6 +118,8 @@ namespace League.Com.Pages
             _driver = driver;
         }
 
+        public IWebElement PageSelectionContainer => _driver.FindElement(By.Id("page-selection"));
+        public IWebElement StatsContainer => _driver.FindElement(By.Id("stats-page"));
         public IWebElement StatsTab => _driver.FindElement(By.XPath("(//a[text()='STATS'])[last()]"));
         public IWebElement SplitDropDown => _driver.FindElement(By.XPath("//a[@data-dropdown='drop-1']"));
         public IWebElement SplitMenu => _driver.FindElement(By.Id("drop-1"));

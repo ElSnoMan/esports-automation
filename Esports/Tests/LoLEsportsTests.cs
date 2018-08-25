@@ -5,6 +5,7 @@ using League.Com.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using Tests.Base;
 using Tests.Settings;
 
@@ -14,6 +15,7 @@ namespace Tests
     public class LoLEsportsTests : TestBase
     {
         IWebDriver Driver;
+        WebDriverWait Wait;
 
         [SetUp]
         public void Setup()
@@ -21,7 +23,7 @@ namespace Tests
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
             Driver = new ChromeDriver(Config.DRIVERPATH, options);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
         }
 
         [TearDown]
@@ -45,25 +47,29 @@ namespace Tests
         [Test, Category("tournament")]
         public void Compare_api_and_page_stats()
         {
-            Driver.Navigate().GoToUrl("https://www.lolesports.com/en_US/na-lcs/na_2018_summer/stats/regular_season");
+            // start on NA LCS League Page
+            Driver.Navigate().GoToUrl("https://www.lolesports.com/en_US/na-lcs");
 
-            // get player stats from the Page using Selenium
-            var statspage = new PlayerStatsPage(Driver);
-            var bjergsenPageStats = statspage.GetPlayerStatsByName("Bjergsen");
-            var doubleliftPageStats = statspage.GetPlayerStatsByName("Doublelift");
+            // get player stats from the Page
+            var statsPage = new PlayerStatsPage(Driver, Wait);
+            statsPage.SwitchTo();
+            statsPage.SelectSplit("2018 Summer Split");
+            statsPage.SelectStage("Regular Season");
+            var bjergsenPage   = statsPage.GetPlayerStatsByName("Bjergsen");
+            var doubleliftPage = statsPage.GetPlayerStatsByName("Doublelift");
 
             // get player stats from the API
-            var playerStats = new PlayerService().GetAllPlayerStats(
+            var statsApi = new PlayerService().GetAllPlayerStats(
                 groupName: "regular_season",
                 tournamentId: new Guid("8531db79-ade3-4294-ae4a-ef639967c393")
             );
 
-            var bjergsen = playerStats.First(p => p.Name == "Bjergsen");
-            var doublelift = playerStats.First(p => p.Name == "Doublelift");
+            var bjergsenApi   = statsApi.First(player => player.Name == "Bjergsen");
+            var doubleliftApi = statsApi.First(player => player.Name == "Doublelift");
 
             // compare the API stats to the Page stats
-            Assert.AreEqual(Math.Round(bjergsen.KDA, 1), bjergsenPageStats.KDA);
-            Assert.AreEqual(Math.Round(doublelift.KDA, 1), doubleliftPageStats.KDA);
+            Assert.AreEqual(Math.Round(bjergsenApi.KDA, 1), bjergsenPage.KDA);
+            Assert.AreEqual(Math.Round(doubleliftApi.KDA, 1), doubleliftPage.KDA);
         }
     }
 }
