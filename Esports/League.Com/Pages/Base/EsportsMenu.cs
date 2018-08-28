@@ -73,7 +73,7 @@ namespace League.Com.Pages
             Map.AllStarEventLink.Click();
         }
 
-        public void GotoNASoutingGrounds()
+        public void GotoNAScoutingGrounds()
         {
             Map.NAScoutingGroundsLink.Click();
         }
