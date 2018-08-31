@@ -29,17 +29,13 @@ namespace League.Com.Pages
             Thread.Sleep(1000);
         }
 
-       
-
         public class TicketsPageMap
         {
             readonly IWebDriver _driver;
 
             public TicketsPageMap(IWebDriver driver)
             {
-
                 _driver = driver;
-
             }
 
             public IWebElement TicketsTab => _driver.FindElement(By.XPath("(//a[href='/en_US/tickets'"));
@@ -54,11 +50,6 @@ namespace League.Com.Pages
             //Ticket Tables
             public IList<IWebElement> TicketRow => _driver.FindElements(By.XPath("(//table[contains(@class, 'tickets-table')]"));
           
-
-
-           
-
-
         }
     }
 }
