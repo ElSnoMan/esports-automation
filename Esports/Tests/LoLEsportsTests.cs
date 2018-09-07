@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Framework.Services;
 using League.Com.Pages;
+using League.Com.Pages.Base;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -70,6 +71,21 @@ namespace Tests
             // compare the API stats to the Page stats
             Assert.AreEqual(Math.Round(bjergsenApi.KDA, 1), bjergsenPage.KDA);
             Assert.AreEqual(Math.Round(doubleliftApi.KDA, 1), doubleliftPage.KDA);
+        }
+
+        [Test]
+        public void MerchTest()
+        {
+            Driver.Navigate().GoToUrl("https://www.lolesports.com");
+            var menu = new LolMenu(Driver);
+            menu.GotoMerchandisePage();
+            // click on the hoodie
+            // select 1 medium hoodie
+            // add to cart
+            // view cart
+            // assert the hoodie is in the cart
+            // assert there is a total price
+
         }
     }
 }

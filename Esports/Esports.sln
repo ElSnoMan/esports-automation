@@ -1,11 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{04F935FB-BE7A-4AE1-81FE-72950C7B97E6}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{04F935FB-BE7A-4AE1-81FE-72950C7B97E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{CCFF45A2-3672-451D-80DB-DF221D4A4383}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Framework\Framework.csproj", "{CCFF45A2-3672-451D-80DB-DF221D4A4383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "League.Com", "League.Com\League.Com.csproj", "{20457779-3A50-4A57-B505-3708BEBA7830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "League.Com", "League.Com\League.Com.csproj", "{20457779-3A50-4A57-B505-3708BEBA7830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchandising", "Merchandising\Merchandising.csproj", "{F9C37615-E415-4385-9F71-266DD2823FC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,5 +28,15 @@ Global
 		{20457779-3A50-4A57-B505-3708BEBA7830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20457779-3A50-4A57-B505-3708BEBA7830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20457779-3A50-4A57-B505-3708BEBA7830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C37615-E415-4385-9F71-266DD2823FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C37615-E415-4385-9F71-266DD2823FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C37615-E415-4385-9F71-266DD2823FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C37615-E415-4385-9F71-266DD2823FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93A32362-7304-48A9-9A22-BE2652B8F966}
 	EndGlobalSection
 EndGlobal
