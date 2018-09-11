@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj" />
     <ProjectReference Include="..\League.Com\League.Com.csproj" />
+    <ProjectReference Include="..\League.Universe\League.Universe.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ApiCheck.cs" />

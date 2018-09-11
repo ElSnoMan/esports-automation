@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using Framework.Services;
 using League.Com.Pages;
+using League.Com.Pages.Base;
+using League.Universe.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -70,6 +72,28 @@ namespace Tests
             // compare the API stats to the Page stats
             Assert.AreEqual(Math.Round(bjergsenApi.KDA, 1), bjergsenPage.KDA);
             Assert.AreEqual(Math.Round(doubleliftApi.KDA, 1), doubleliftPage.KDA);
+        }
+
+        [Test]
+        public void Verify_First_Champion()
+        {
+            // start on lolesports 
+            Driver.Navigate().GoToUrl("https://www.lolesports.com");
+                      
+            var championspage = new ChampionsPage(Driver,Wait);
+            var lolMenu = new LolMenu(Driver, Wait);
+           
+            // go to  Unverse page from lol menu
+            lolMenu.GotoUniversePage();
+            // go to champions page link
+            championspage.Goto();
+            //verify if AATROX is the first champion
+            var text = championspage.Map.FirstChampionCard.Text;
+            Assert.IsTrue(text.Contains("AATROX"));
+        
+            // Test for verifying any champion in the list 
+            // var alistar = championspage.GetChampionByName("alistar");
+            // Assert.IsTrue(alistar.Text.Contains("ALISTAR"));
         }
     }
 }

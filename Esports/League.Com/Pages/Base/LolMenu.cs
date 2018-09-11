@@ -9,7 +9,7 @@ namespace League.Com.Pages.Base
 		readonly IWebDriver _driver;
 		public readonly LolMenuMap Map;
 
-		public LolMenu(IWebDriver driver)
+		public LolMenu(IWebDriver driver, OpenQA.Selenium.Support.UI.WebDriverWait wait)
 		{
 			_driver = driver;
 			Map = new LolMenuMap(driver);
