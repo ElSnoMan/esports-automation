@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Tests.Base;
 using Tests.Settings;
+using League.Com.Pages.Base;
 
 namespace Tests
 {
@@ -55,7 +56,7 @@ namespace Tests
             statsPage.SwitchTo();
             statsPage.SelectSplit("2018 Summer Split");
             statsPage.SelectStage("Regular Season");
-            var bjergsenPage   = statsPage.GetPlayerStatsByName("Bjergsen");
+            var bjergsenPage = statsPage.GetPlayerStatsByName("Bjergsen");
             var doubleliftPage = statsPage.GetPlayerStatsByName("Doublelift");
 
             // get player stats from the API
@@ -64,12 +65,25 @@ namespace Tests
                 tournamentId: new Guid("8531db79-ade3-4294-ae4a-ef639967c393")
             );
 
-            var bjergsenApi   = statsApi.First(player => player.Name == "Bjergsen");
+            var bjergsenApi = statsApi.First(player => player.Name == "Bjergsen");
             var doubleliftApi = statsApi.First(player => player.Name == "Doublelift");
 
             // compare the API stats to the Page stats
             Assert.AreEqual(Math.Round(bjergsenApi.KDA, 1), bjergsenPage.KDA);
             Assert.AreEqual(Math.Round(doubleliftApi.KDA, 1), doubleliftPage.KDA);
+        }
+
+        [Test, Category("regular Season")]
+        public void Teams_displayed_with_name_rank_record()
+        {
+            Driver.Navigate().GoToUrl("https://www.lolesports.com/en_US/");
+            var home = new LolEsportsHomePage(Driver, Wait);
+            home.EsportsMenu.GotoNALCS();         
+            var teamStandings = new TeamsStandingsPage(Driver, Wait);
+            teamStandings.Goto();          
+			teamStandings.SelectStageByName("regular season");
+			Assert.IsTrue(teamStandings.RegularSeasonResultsDisplayed());
+ 
         }
     }
 }
