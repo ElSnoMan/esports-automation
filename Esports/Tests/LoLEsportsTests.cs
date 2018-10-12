@@ -10,6 +10,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Tests.Base;
 using Tests.Settings;
+using League.Com.Pages.Base;
 
 namespace Tests
 {
@@ -57,7 +58,7 @@ namespace Tests
             statsPage.SwitchTo();
             statsPage.SelectSplit("2018 Summer Split");
             statsPage.SelectStage("Regular Season");
-            var bjergsenPage   = statsPage.GetPlayerStatsByName("Bjergsen");
+            var bjergsenPage = statsPage.GetPlayerStatsByName("Bjergsen");
             var doubleliftPage = statsPage.GetPlayerStatsByName("Doublelift");
 
             // get player stats from the API
@@ -66,7 +67,7 @@ namespace Tests
                 tournamentId: new Guid("8531db79-ade3-4294-ae4a-ef639967c393")
             );
 
-            var bjergsenApi   = statsApi.First(player => player.Name == "Bjergsen");
+            var bjergsenApi = statsApi.First(player => player.Name == "Bjergsen");
             var doubleliftApi = statsApi.First(player => player.Name == "Doublelift");
 
             // compare the API stats to the Page stats
@@ -74,26 +75,17 @@ namespace Tests
             Assert.AreEqual(Math.Round(doubleliftApi.KDA, 1), doubleliftPage.KDA);
         }
 
-        [Test]
-        public void Verify_First_Champion()
+        [Test, Category("regular Season")]
+        public void Teams_displayed_with_name_rank_record()
         {
-            // start on lolesports 
-            Driver.Navigate().GoToUrl("https://www.lolesports.com");
-                      
-            var championspage = new ChampionsPage(Driver,Wait);
-            var lolMenu = new LolMenu(Driver, Wait);
-           
-            // go to  Unverse page from lol menu
-            lolMenu.GotoUniversePage();
-            // go to champions page link
-            championspage.Goto();
-            //verify if AATROX is the first champion
-            var text = championspage.Map.FirstChampionCard.Text;
-            Assert.IsTrue(text.Contains("AATROX"));
-        
-            // Test for verifying any champion in the list 
-            // var alistar = championspage.GetChampionByName("alistar");
-            // Assert.IsTrue(alistar.Text.Contains("ALISTAR"));
+            Driver.Navigate().GoToUrl("https://www.lolesports.com/en_US/");
+            var home = new LolEsportsHomePage(Driver, Wait);
+            home.EsportsMenu.GotoNALCS();         
+            var teamStandings = new TeamsStandingsPage(Driver, Wait);
+            teamStandings.Goto();          
+			teamStandings.SelectStageByName("regular season");
+			Assert.IsTrue(teamStandings.RegularSeasonResultsDisplayed());
+ 
         }
     }
 }
