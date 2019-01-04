@@ -12,5 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Selenium\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
 </Project>

@@ -19,22 +19,22 @@ namespace Framework.Services
         string _baseUrl => "https://api.lolesports.com/api/v2";
         string _playerStatsEndpoint => _baseUrl + "/tournamentPlayerStats";
 
-        public List<PlayerStats> GetAllPlayerStats(string groupName, Guid tournamentId)
+        public List<PlayerStats> GetAllPlayerStats(string groupName, string tournamentId)
         {
             var client = new RestClient(_playerStatsEndpoint);
-            var request = new RestRequest($"?groupName={groupName}&tournamentId={tournamentId}", Method.GET);
+            var request = new RestRequest($"?groupName={groupName}&tournamentId={new Guid(tournamentId)}", Method.GET);
             var response = client.Execute(request);
 
             dynamic json = JsonConvert.DeserializeObject(response.Content);
             return json["stats"].ToObject<List<PlayerStats>>();
         }
 
-        public PlayerStats GetPlayerStatsById(string groupName, Guid tournamentId, int id)
+        public PlayerStats GetPlayerStatsById(string groupName, string tournamentId, int id)
         {
             return GetAllPlayerStats(groupName, tournamentId).FirstOrDefault(p => p.Id == id);
         }
 
-        public PlayerStats GetPlayerStatsByName(string groupName, Guid tournamentId, string name)
+        public PlayerStats GetPlayerStatsByName(string groupName, string tournamentId, string name)
         {
             return GetAllPlayerStats(groupName, tournamentId).FirstOrDefault(p => p.Name == name);
         }

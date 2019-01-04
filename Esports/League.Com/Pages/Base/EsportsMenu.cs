@@ -1,16 +1,15 @@
-﻿using OpenQA.Selenium;
+﻿using Framework.Selenium;
+using OpenQA.Selenium;
 
 namespace League.Com.Pages
 {
     public class EsportsMenu
     {
-        readonly IWebDriver _driver;
         public readonly EsportsMenuMap Map;
 
-        public EsportsMenu(IWebDriver driver)
+        public EsportsMenu()
         {
-            _driver = driver;
-            Map = new EsportsMenuMap(driver);
+            Map = new EsportsMenuMap();
         }
 
         public void GotoHome()
@@ -38,30 +37,25 @@ namespace League.Com.Pages
             Map.LCKLink.Click();
         }
 
-
         public void GotoLPL()
         {
             Map.LPLLink.Click();
         }
-
 
         public void GotoLMS()
         {
             Map.LMSLink.Click();
         }
 
-
         public void GotoNAAcademy()
         {
             Map.NAAcademyLink.Click();
         }
 
-
         public void GotoRiftRivals()
         {
             Map.RiftRivalsLink.Click();
         }
-
 
         public void GotoWorldChampionship()
         {
@@ -82,32 +76,22 @@ namespace League.Com.Pages
         {
             Map.TicketsLink.Click();
         }
-
-
     }
 
     public class EsportsMenuMap
     {
-        readonly IWebDriver _driver;
-
-        public EsportsMenuMap(IWebDriver driver)
-        {
-            _driver = driver;
-        }
-
-        public IWebElement HomeLink => _driver.FindElement(By.XPath("(//a[text()='HOME'])[last()]"));
-        public IWebElement NALCSLink => _driver.FindElement(By.XPath("//a[text()='NA LCS']"));
-        public IWebElement EULCSLink => _driver.FindElement(By.XPath("//a[text()='EU LCS']"));
-        public IWebElement LCKLink => _driver.FindElement(By.CssSelector("[href='/en_US/lck']"));
-        public IWebElement LPLLink => _driver.FindElement(By.CssSelector("[href='/en_US/lpl']"));
-        public IWebElement LMSLink => _driver.FindElement(By.CssSelector("[href='/en_US/lms']"));
-        public IWebElement NAAcademyLink => _driver.FindElement(By.CssSelector("[href='/en_US/na-academy']"));
-        public IWebElement MidSeasonInvitationalLink => _driver.FindElement(By.CssSelector("[href='/en_US/msi']"));
-        public IWebElement RiftRivalsLink => _driver.FindElement(By.CssSelector("[href='/en_US/rift-rivals']"));
-        public IWebElement WorldChampionshipLink => _driver.FindElement(By.CssSelector("[href='/en_US/worlds']"));
-        public IWebElement AllStarEventLink => _driver.FindElement(By.CssSelector("[href='/en_US/all-star']"));
-        public IWebElement NAScoutingGroundsLink => _driver.FindElement(By.CssSelector("[href='/en_US/na-scouting-grounds']"));
-        public IWebElement TicketsLink => _driver.FindElement(By.XPath("(//a[text()='Tickets'])[last()]"));
-
+        public Element HomeLink => Driver.FindElement(By.XPath("(//a[text()='HOME'])[last()]"));
+        public Element NALCSLink => Driver.FindElement(By.XPath("//a[text()='NA LCS']"));
+        public Element EULCSLink => Driver.FindElement(By.XPath("//a[text()='EU LCS']"));
+        public Element LCKLink => Driver.FindElement(By.CssSelector("[href='/en_US/lck']"));
+        public Element LPLLink => Driver.FindElement(By.CssSelector("[href='/en_US/lpl']"));
+        public Element LMSLink => Driver.FindElement(By.CssSelector("[href='/en_US/lms']"));
+        public Element NAAcademyLink => Driver.FindElement(By.CssSelector("[href='/en_US/na-academy']"));
+        public Element MidSeasonInvitationalLink => Driver.FindElement(By.CssSelector("[href='/en_US/msi']"));
+        public Element RiftRivalsLink => Driver.FindElement(By.CssSelector("[href='/en_US/rift-rivals']"));
+        public Element WorldChampionshipLink => Driver.FindElement(By.CssSelector("[href='/en_US/worlds']"));
+        public Element AllStarEventLink => Driver.FindElement(By.CssSelector("[href='/en_US/all-star']"));
+        public Element NAScoutingGroundsLink => Driver.FindElement(By.CssSelector("[href='/en_US/na-scouting-grounds']"));
+        public Element TicketsLink => Driver.FindElement(By.XPath("(//a[text()='Tickets'])[last()]"));
     }
 }

@@ -6,10 +6,10 @@ namespace Framework.Services
 {
     public interface IPlayerStatsService
     {
-        List<PlayerStats> GetAllPlayerStats(string groupName, Guid tournamentId);
+        List<PlayerStats> GetAllPlayerStats(string groupName, string tournamentId);
 
-        PlayerStats GetPlayerStatsById(string groupName, Guid tournamentId, int id);
+        PlayerStats GetPlayerStatsById(string groupName, string tournamentId, int id);
 
-        PlayerStats GetPlayerStatsByName(string groupName, Guid tournamentId, string name);
+        PlayerStats GetPlayerStatsByName(string groupName, string tournamentId, string name);
     }
 }

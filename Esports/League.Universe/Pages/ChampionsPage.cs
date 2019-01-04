@@ -9,11 +9,10 @@ namespace League.Universe.Pages
     public class ChampionsPage
     {
         readonly IWebDriver _driver;
-        readonly WebDriverWait _wait;
         public readonly ChampionsPageMap Map;
         public readonly UniverseMenu UniverseMenu;
 
-        public ChampionsPage(IWebDriver driver, WebDriverWait wait)
+        public ChampionsPage(IWebDriver driver)
         {
             _driver = driver;
             Map = new ChampionsPageMap(driver);

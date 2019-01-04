@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
 
-namespace Tests.Settings
+namespace Framework.Settings
 {
     public static class Config
     {
-        public static string DRIVERPATH = Path.Combine(Directory.GetCurrentDirectory(), PlatformDriver);
+        public static string DRIVER_PATH = Path.Combine(Directory.GetCurrentDirectory(), PlatformDriver);
+
+        public static Uri DOCKER_GRID_HUB_URI = new Uri("http://localhost:4444/wd/hub");
 
         private static string PlatformDriver
         {

@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Framework.Selenium;
 using League.Com.Pages.Base;
 using OpenQA.Selenium;
 
@@ -6,13 +7,11 @@ namespace League.Com.Pages
 {
     public class SchedulePage : PageBase
     {
-        readonly IWebDriver _driver;
         public readonly SchedulePageMap Map;
 
-        public SchedulePage(IWebDriver driver) : base(driver)
+        public SchedulePage()
         {
-            _driver = driver;
-            Map = new SchedulePageMap(driver);
+            Map = new SchedulePageMap();
         }
 
         public void Goto()
@@ -29,15 +28,7 @@ namespace League.Com.Pages
 
     public class SchedulePageMap
     {
-        readonly IWebDriver _driver;
-
-        public SchedulePageMap(IWebDriver driver)
-        {
-            _driver = driver;
-        }
-
-        public IWebElement ScheduleTab => _driver.FindElement(By.CssSelector("[href='/en_US/na-lcs/na_2018_summer/schedule']"));
-
-        public IWebElement StageDropdown => _driver.FindElement(By.CssSelector("[data-dropdown='drop-2']"));
+        public Element ScheduleTab => Driver.FindElement(By.CssSelector("[href='/en_US/na-lcs/na_2018_summer/schedule']"));
+        public Element StageDropdown => Driver.FindElement(By.CssSelector("[data-dropdown='drop-2']"));
     }
 }
