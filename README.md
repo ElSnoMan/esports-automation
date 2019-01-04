@@ -1,5 +1,5 @@
 # Welcome to the esports-automation Repo!
-This is a public repo that is meant for anyone to join in and collaborate on. The goal is simple: Create a Test Automation Framework to test as much of `lolesports.com` and `esports.com` as we can.
+This is a public repo that is meant for anyone to join in and collaborate on. The goal is simple: Create a Test Automation Framework to test as much of `lolesports.com` and other League of Legends websites as we can.
 
 This is primarily for the participants at `QA at the Point` and all communication is done in our Slack group called `QA Utah`. If you are not actively at QA at the Point or live in Utah, you are still very much welcome to join in! Also, feel free to reach out to me if you'd like to be invited to the QA Utah Slack group.
 
