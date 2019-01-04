@@ -11,7 +11,7 @@ services:
         GRID_TIMEOUT: 300
 
   chrome:
-    image: selenium/node-chrome-debug
+    image: selenium/node-chrome
     depends_on:
       - selenium-hub
     environment:
@@ -23,7 +23,7 @@ services:
     #   - /dev/shm:/dev/shm
 
   firefox:
-    image: selenium/node-firefox-debug
+    image: selenium/node-firefox
     depends_on:
       - selenium-hub
     environment:
