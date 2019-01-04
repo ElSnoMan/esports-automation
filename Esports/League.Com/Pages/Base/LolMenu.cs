@@ -1,20 +1,17 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Framework.Selenium;
 using OpenQA.Selenium;
 
 namespace League.Com.Pages.Base
 {
 	public class LolMenu
 	{
-		readonly IWebDriver _driver;
 		public readonly LolMenuMap Map;
 
-		public LolMenu(IWebDriver driver, OpenQA.Selenium.Support.UI.WebDriverWait wait)
+		public LolMenu()
 		{
-			_driver = driver;
-			Map = new LolMenuMap(driver);
+			Map = new LolMenuMap();
 		}
-
 
 		public void GotoLolHomePage()
 		{
@@ -67,32 +64,23 @@ namespace League.Com.Pages.Base
 			Map.RegionDropdown.Click();
 			Map.Region(region).Click();
 			Map.Language(language).Click();
-            
-		}
-
-
-		public class LolMenuMap
-		{
-			readonly IWebDriver _driver;
-
-			public LolMenuMap(IWebDriver driver)
-			{
-				_driver = driver;
-			}
-			public IWebElement LolHomePageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'https://na.leagueoflegends.com/en/')]"))[0];
-			public IWebElement NewsPageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'https://na.leagueoflegends.com/en/news/')]"))[0];
-			public IWebElement GamePageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'http://gameinfo.na.leagueoflegends.com/en/game-info/')]"))[1];
-			public IWebElement UniversePageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'http://universe.leagueoflegends.com/en_US/')]"))[1];
-			public IWebElement NexusPageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'http://nexus.leagueoflegends.com/')]"))[1];
-			public IWebElement ESportsPageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'http://www.lolesports.com/en_US')]"))[1];
-			public IWebElement CommunityPageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'http://boards.na.leagueoflegends.com/en/')]"))[1];
-			public IWebElement SupportPageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'https://support.riotgames.com/hc/en-us')]"))[1];
-			public IWebElement MerchandisePageLink => _driver.FindElements(By.XPath("(//a[contains(@href, 'https://na.merch.riotgames.com/en/')]"))[1];
-			public IWebElement RegionLanguageDropdown => _driver.FindElement(By.CssSelector("div[id *='riotbar-locale-switch-trigger']"));
-			public IWebElement RegionDropdown => _driver.FindElement(By.CssSelector("div[id *='riotbar-region-dropdown-trigger']"));
-			public IWebElement Region(string region) => _driver.FindElements(By.CssSelector("li.riotbar-region-option")).FirstOrDefault(r => r.Text == region);
-			public IWebElement Language(string language) => _driver.FindElements(By.CssSelector("//a[contains(text(), language)]")).FirstOrDefault(l => l.Text == language);
-            //Hey Carlos!  Did I do this ^ right?
 		}
 	}
+
+    public class LolMenuMap
+    {
+        public Element LolHomePageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'https://na.leagueoflegends.com/en/')]"));
+        public Element NewsPageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'https://na.leagueoflegends.com/en/news/')]"));
+        public Element GamePageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'http://gameinfo.na.leagueoflegends.com/en/game-info/')]"));
+        public Element UniversePageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'http://universe.leagueoflegends.com/en_US/')]"));
+        public Element NexusPageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'http://nexus.leagueoflegends.com/')]"));
+        public Element ESportsPageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'http://www.lolesports.com/en_US')]"));
+        public Element CommunityPageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'http://boards.na.leagueoflegends.com/en/')]"));
+        public Element SupportPageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'https://support.riotgames.com/hc/en-us')]"));
+        public Element MerchandisePageLink => Driver.FindElement(By.XPath("(//a[contains(@href, 'https://na.merch.riotgames.com/en/')]"));
+        public Element RegionLanguageDropdown => Driver.FindElement(By.CssSelector("div[id *='riotbar-locale-switch-trigger']"));
+        public Element RegionDropdown => Driver.FindElement(By.CssSelector("div[id *='riotbar-region-dropdown-trigger']"));
+        public Element Region(string region) => Driver.FindElements(By.CssSelector("li.riotbar-region-option")).FirstOrDefault(r => r.Text == region);
+        public Element Language(string language) => Driver.FindElements(By.CssSelector("//a[contains(text(), language)]")).FirstOrDefault(l => l.Text == language);
+    }
 }

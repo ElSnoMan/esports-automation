@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using Framework.Model;
+using Framework.Selenium;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace League.Com.Pages
 {
     public class TeamsStandingsPage
     {
-        readonly IWebDriver _driver;
-        readonly WebDriverWait _wait;
         public readonly TeamsStandingsPageMap Map;
 
-        public TeamsStandingsPage(IWebDriver driver, WebDriverWait wait)
+        public TeamsStandingsPage()
         {
-            _driver = driver;
-            _wait = wait;
-            Map = new TeamsStandingsPageMap(driver);
+            Map = new TeamsStandingsPageMap();
         }
 
         public void Goto()
         {
-            _wait.Until((drvr) => Map.TeamsStandingsTab.Displayed);
+            Driver.Wait.Until((drvr) => Map.TeamsStandingsTab.Displayed);
             Map.TeamsStandingsTab.Click();
             WaitForPageLoad();
         }
@@ -33,34 +27,33 @@ namespace League.Com.Pages
             Thread.Sleep(1000);
         }
 
-		public void SelectStageByName(string name)
+        public void SelectStageByName(string name)
         {
             Map.StageDropDown.Click();
-			_driver.FindElement(By.XPath($"//a[text '{name.ToLower()}']")).Click();
-			WaitForPageLoad();
+            Driver.FindElement(By.XPath($"//a[text '{name.ToLower()}']")).Click();
+            WaitForPageLoad();
         }
-        
-		public bool RegularSeasonResultsDisplayed()
-		{
-			var result = false;
-			foreach (var row in Map.TeamRows)
+
+        public bool RegularSeasonResultsDisplayed()
+        {
+            var result = false;
+            foreach (var row in Map.TeamRows)
             {
                 var rank = row.FindElement(By.CssSelector(".rank"));
                 var name = row.FindElement(By.CssSelector(".team-name"));
-				var record = row.FindElement(By.CssSelector(".record"));                
+                var record = row.FindElement(By.CssSelector(".record"));
 
-				if(!rank.Displayed||!name.Displayed||!record.Displayed)
-				{
-					result = false;
-					break;
-				}
+                if (!rank.Displayed || !name.Displayed || !record.Displayed)
+                {
+                    result = false;
+                    break;
+                }
 
-				result = true;            
+                result = true;
             }
 
-			return result;		
-		}
-        
+            return result;
+        }
 
         public TeamStanding GetTeamByName(string name)
         {
@@ -75,25 +68,13 @@ namespace League.Com.Pages
 
             return team;
         }
-
-       
     }
 
     public class TeamsStandingsPageMap
     {
-        readonly IWebDriver _driver;
-
-        public TeamsStandingsPageMap(IWebDriver driver)
-        {
-
-            _driver = driver;
-
-        }
-
-        public IWebElement TeamsStandingsTab => _driver.FindElement(By.XPath("//a[contains(text(), 'TEAMS & STANDINGS')]"));
-        public IList<IWebElement> TeamRows => _driver.FindElements(By.XPath("(//div[contains(@class, 'team-row')]"));
-		public IList<IWebElement> TeamRank => _driver.FindElements(By.XPath("//div[contains(@class, 'columns large-1 small-3 rank')]"));
-        public IWebElement StageDropDown => _driver.FindElement(By.XPath("//a[contains(@data-dropdown, 'drop-2')]"));
-
+        public Element TeamsStandingsTab => Driver.FindElement(By.XPath("//a[contains(text(), 'TEAMS & STANDINGS')]"));
+        public Elements TeamRows => Driver.FindElements(By.XPath("(//div[contains(@class, 'team-row')]"));
+        public Elements TeamRank => Driver.FindElements(By.XPath("//div[contains(@class, 'columns large-1 small-3 rank')]"));
+        public Element StageDropDown => Driver.FindElement(By.XPath("//a[contains(@data-dropdown, 'drop-2')]"));
     }
 }

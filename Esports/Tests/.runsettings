@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <NUnit>
+  <!-- NUnit .runsettings documentation: https://github.com/nunit/docs/wiki/Tips-And-Tricks -->
+    <NumberOfTestWorkers>2</NumberOfTestWorkers>
+  </NUnit>
+
+  <!-- Parameters used by tests at runtime -->
+  <TestRunParameters>
+    <Parameter name="browser" value="chrome" />
+    <Parameter name="type" value="remote" />
+    <Parameter name="wait" value="30" />
+    <Parameter name="debug" value="false" />
+  </TestRunParameters>
+</RunSettings>

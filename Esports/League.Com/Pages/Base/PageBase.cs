@@ -1,18 +1,15 @@
-﻿using OpenQA.Selenium;
-
-namespace League.Com.Pages.Base
+﻿namespace League.Com.Pages.Base
 {
     public class PageBase
     {
-        readonly IWebDriver _driver;
         public readonly EsportsMenu EsportsMenu;
+
         public readonly LolMenu LolMenu;
 
-        public PageBase(IWebDriver driver)
+        public PageBase()
         {
-            _driver = driver;
-            EsportsMenu = new EsportsMenu(driver);
-            LolMenu = new LolMenu(driver);
+            EsportsMenu = new EsportsMenu();
+            LolMenu = new LolMenu();
         }
     }
 }
