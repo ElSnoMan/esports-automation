@@ -16,7 +16,8 @@ Everyone in training has been told to use `Visual Studio Community` (free on Mac
 
 ## Test Automation U
 
-- Scaling Tests with Docker: checkout the `demo/scaling-with-docker` branch
+- Scaling Tests with Docker
+    - checkout the `demo/scaling-with-docker` branch
 
 ## Running the tests
 
