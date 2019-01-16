@@ -1,12 +1,10 @@
-﻿using System;
-using Framework.Services;
+﻿using Framework.Services;
 using NUnit.Framework;
-using Tests.Base;
 
 namespace Tests
 {
     [TestFixture]
-    public class Unit : TestBase
+    public class Service
     {
         [TestCase("regular_season")]
         [TestCase("playoffs")]

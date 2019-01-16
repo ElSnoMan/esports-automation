@@ -7,13 +7,13 @@ namespace League.Com.Pages
     public class LeaguePage : PageBase
     {
         public SchedulePage Schedule;
-        public TeamsStandingsPage TeamStandings;
+        public StandingsPage TeamStandings;
         public PlayerStatsPage Stats;
 
         public LeaguePage()
         {
             Schedule = new SchedulePage();
-            TeamStandings = new TeamsStandingsPage();
+            TeamStandings = new StandingsPage();
             Stats = new PlayerStatsPage();
         }
 

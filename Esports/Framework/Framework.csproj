@@ -14,5 +14,6 @@
     <Folder Include="Model\" />
     <Folder Include="Selenium\" />
     <Folder Include="Settings\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
 </Project>

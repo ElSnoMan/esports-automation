@@ -4,12 +4,12 @@
     {
         public readonly EsportsMenu EsportsMenu;
 
-        public readonly LolMenu LolMenu;
+        public readonly WatchMenu WatchMenu;
 
         public PageBase()
         {
             EsportsMenu = new EsportsMenu();
-            LolMenu = new LolMenu();
+            WatchMenu = new WatchMenu();
         }
     }
 }

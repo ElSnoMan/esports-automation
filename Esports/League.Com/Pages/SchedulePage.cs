@@ -16,7 +16,7 @@ namespace League.Com.Pages
 
         public void Goto()
         {
-            EsportsMenu.GotoNALCS();
+            // deprecated: EsportsMenu.GotoNALCS();
             WaitForPageLoad();
         }
 
