@@ -14,6 +14,10 @@ Create a `Dev` directory on your "root" and then `fork` or `clone` the repo down
     
 Everyone in training has been told to use `Visual Studio Community` (free on Mac or Windows), but you can also use `VS Code`. If you are unfamiliar with the ins and outs of VS Code or are newer to C#, please use `Visual Studio Community`.
 
+## Test Automation U
+
+- Scaling Tests with Docker: checkout the `demo/scaling-with-docker` branch
+
 ## Running the tests
 
 As of this writing, the easiest way is to run one of the following in the command line:
