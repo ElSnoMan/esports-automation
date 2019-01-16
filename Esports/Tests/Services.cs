@@ -1,10 +1,10 @@
 ﻿using Framework.Services;
 using NUnit.Framework;
 
-namespace Tests
+namespace League.Com.Tests
 {
     [TestFixture]
-    public class Service
+    public class Services
     {
         [TestCase("regular_season")]
         [TestCase("playoffs")]
