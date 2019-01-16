@@ -1,9 +1,8 @@
 ﻿using Framework.Constants;
-using League.Com;
 using NUnit.Framework;
 using Tests.Base;
 
-namespace Tests
+namespace League.Com.Tests
 {
     [TestFixture, Parallelizable]
     public class Standings : TestBase

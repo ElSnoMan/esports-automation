@@ -1,19 +1,21 @@
-﻿using League.Com.Pages.Base;
+﻿using Framework.Selenium;
+using League.Com.Pages.Base;
+using OpenQA.Selenium;
 
 namespace League.Com.Pages
 {
     public class HomePage : PageBase
 	{
-		public readonly LolEsportsHomePageMap Map;
+		public readonly HomePageMap Map;
 
 		public HomePage()
 		{
-			Map = new LolEsportsHomePageMap();
+			Map = new HomePageMap();
 		}
 	}
 
-	public class LolEsportsHomePageMap
+	public class HomePageMap
 	{
-
+        public Element PlayNowSignupButton => Driver.FindElement(By.CssSelector("[data-riotbar-link-id='signup']"));
 	}
 }
