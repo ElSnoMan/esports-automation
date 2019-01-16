@@ -14,6 +14,19 @@ Create a `Dev` directory on your "root" and then `fork` or `clone` the repo down
     
 Everyone in training has been told to use `Visual Studio Community` (free on Mac or Windows), but you can also use `VS Code`. If you are unfamiliar with the ins and outs of VS Code or are newer to C#, please use `Visual Studio Community`.
 
+## Running the tests
+
+As of this writing, the easiest way is to run one of the following in the command line:
+
+- `dotnet test --settings .runsettings --filter testcategory=standings`
+    - Run tests based on category
+    
+- `dotnet test --settings .runsettings --filter name~lcs`
+    - Run tests based on name
+    
+Microsoft's documentation on their `dotnet test` command can be found here:
+- https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test?tabs=netcore21
+
 
 ## What can I work on?
 All of the work is being tracked in the `Issues` tab. Autobots are using a very simple Kanban board, but all work is divided into Issues with labels. The Label System should be used and adhered to:
