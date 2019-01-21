@@ -11,7 +11,6 @@ namespace League.Com.Tests
         public override void Setup()
         {
             base.Setup();
-            Esports.Goto();
             Esports.Standings.Goto();
         }
 
@@ -28,7 +27,7 @@ namespace League.Com.Tests
         public void Filter_by_LEC_region()
         {
             Esports.Standings.SwitchTo(Leagues.LEC);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("SK Gaming"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("G2 Esports"));
         }
 
         [Test, Parallelizable]
@@ -36,7 +35,7 @@ namespace League.Com.Tests
         public void Filter_by_LCK_region()
         {
             Esports.Standings.SwitchTo(Leagues.LCK);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("SK telecom T1"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Hanwha Life Esports"));
         }
 
         [Test, Parallelizable]
@@ -44,15 +43,15 @@ namespace League.Com.Tests
         public void Filter_by_LPL_region()
         {
             Esports.Standings.SwitchTo(Leagues.LPL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Edward Gaming"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Invictus Gaming"));
         }
 
         [Test, Parallelizable]
         [Category("standings")]
-        public void Filter_by_NA_academy()
+        public void Filter_by_LCS_academy()
         {
-            Esports.Standings.SwitchTo(Leagues.NA_ACADEMY);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Counter Logic Gaming Academy"));
+            Esports.Standings.SwitchTo(Leagues.LCS_ACADEMY);
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("FlyQuest Academy"));
         }
 
         [Test, Parallelizable]
@@ -60,7 +59,7 @@ namespace League.Com.Tests
         public void Filter_by_TCL_region()
         {
             Esports.Standings.SwitchTo(Leagues.TCL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Bursaspor Esports"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Galatasaray Espor"));
         }
 
         [Test, Parallelizable]
@@ -84,7 +83,7 @@ namespace League.Com.Tests
         public void Filter_by_OPL_region()
         {
             Esports.Standings.SwitchTo(Leagues.OPL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("MAMMOTH"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("The Chiefs Esports Club"));
         }
     }
 }

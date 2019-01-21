@@ -17,7 +17,7 @@ namespace League.Com.Pages
 
         public void Goto()
         {
-            EsportsMenu.StandingsLink.Click();
+            Driver.Goto("https://watch.na.lolesports.com/standings");
             Driver.Wait.Until(driver => WatchMenu.StandingsLink.Displayed);
             Driver.Wait.Until(driver => Map.FirstRow.Displayed);
         }
