@@ -14,6 +14,12 @@ Create a `Dev` directory on your "root" and then `fork` or `clone` the repo down
     
 Everyone in training has been told to use `Visual Studio Community` (free on Mac or Windows), but you can also use `VS Code`. If you are unfamiliar with the ins and outs of VS Code or are newer to C#, please use `Visual Studio Community`.
 
+### NOTE: You must have .NET Core installed
+
+Download the .NET Core 2.1 SDK and install it on your machine
+- https://dotnet.microsoft.com/download/dotnet-core/2.1
+- Click on .NET Core Installer for 2.1.XXX (latest 2.1)
+
 ## Test Automation U
 
 - **Course: Scaling Tests with Docker**
