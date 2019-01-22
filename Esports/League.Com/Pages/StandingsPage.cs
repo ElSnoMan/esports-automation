@@ -17,13 +17,22 @@ namespace League.Com.Pages
 
         public void Goto()
         {
-            EsportsMenu.StandingsLink.Click();
+            Driver.Goto("https://watch.na.lolesports.com/standings");
             Driver.Wait.Until(driver => WatchMenu.StandingsLink.Displayed);
             Driver.Wait.Until(driver => Map.FirstRow.Displayed);
         }
 
         public void SwitchTo(string league)
         {
+            try
+            {
+                Map.LeagueSelector.Click();
+            }
+            catch
+            {
+                // League Selector not needed
+            }
+
             Driver.FindElement(
                 by: By.XPath($"//div[@class='name' and text()='{league}']"),
                 elementName: $"{league} League Filter")
@@ -80,5 +89,8 @@ namespace League.Com.Pages
     {
         public Element FirstRow => Driver.FindElement(By.CssSelector(".ranking"));
         public Elements TeamRows => Driver.FindElements(By.CssSelector(".ranking"));
+
+        // used if screen is too small
+        public Element LeagueSelector => Driver.FindElement(By.CssSelector(".league-selector"));
     }
 }

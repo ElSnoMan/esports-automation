@@ -6,7 +6,7 @@
         public const string LEC = "LEC";
         public const string LCK = "LCK";
         public const string LPL = "LPL";
-        public const string NA_ACADEMY = "NA Academy";
+        public const string LCS_ACADEMY = "LCS Academy";
         public const string TCL = "TCL";
         public const string CBLOL = "CBLOL";
         public const string LLA = "LLA";
