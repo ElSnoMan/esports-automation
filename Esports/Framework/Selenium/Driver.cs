@@ -18,7 +18,7 @@ namespace Framework.Selenium
             _driver = DriverFactory.Build(type, browser);
             Wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(setWait));
             Window = new WindowManager();
-            Window.Maximize();
+            // Window.Maximize();
         }
 
         /// <summary>
