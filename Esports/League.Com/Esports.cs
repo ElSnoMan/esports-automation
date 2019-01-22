@@ -10,10 +10,13 @@ namespace League.Com
 
         [ThreadStatic] public static StandingsPage Standings;
 
+        [ThreadStatic] public static TicketsPage Tickets;
+
         public static void Init()
         {
             Home = new HomePage();
             Standings = new StandingsPage();
+            Tickets = new TicketsPage();
         }
 
         public static void Goto()
