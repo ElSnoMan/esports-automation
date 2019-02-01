@@ -8,14 +8,20 @@ namespace League.Com
     {
         [ThreadStatic] public static HomePage Home;
 
+        [ThreadStatic] public static ServiceStatusPage ServiceStatus;
+
         [ThreadStatic] public static StandingsPage Standings;
+
+        [ThreadStatic] public static SupportPage Support;
 
         [ThreadStatic] public static TicketsPage Tickets;
 
         public static void Init()
         {
             Home = new HomePage();
+            ServiceStatus = new ServiceStatusPage();
             Standings = new StandingsPage();
+            Support = new SupportPage();
             Tickets = new TicketsPage();
         }
 
