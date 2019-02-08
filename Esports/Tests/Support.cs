@@ -1,4 +1,5 @@
 ﻿using System;
+using Framework.Selenium;
 using NUnit.Framework;
 using Tests.Base;
 
@@ -41,6 +42,15 @@ namespace League.Com.Tests
             Esports.Support.Goto();
             Esports.ServiceStatus.Goto();
             Assert.That(Esports.ServiceStatus.ServiceOnline("Website"));
+        }
+
+        [Test, Parallelizable, Category("support")]
+        public void Issues_dialog_redirects_to_service_status()
+        {
+            Esports.Goto();
+            Esports.Home.EsportsMenu.IssuesButton.Click();
+            Esports.Home.EsportsMenu.IssuesDialog.Click();
+            Assert.That(Driver.Title.Contains("Service Status"));
         }
     }
 }
