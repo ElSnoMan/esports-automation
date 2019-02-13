@@ -19,7 +19,7 @@ namespace League.Com.Tests
         public void Filter_by_LCS_region()
         {
             // LCS filter selected by default
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("TSM"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Team Liquid"));
         }
 
         [Test, Parallelizable]
@@ -35,7 +35,7 @@ namespace League.Com.Tests
         public void Filter_by_LCK_region()
         {
             Esports.Standings.SwitchTo(Leagues.LCK);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Hanwha Life Esports"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Griffin"));
         }
 
         [Test, Parallelizable]
@@ -43,7 +43,7 @@ namespace League.Com.Tests
         public void Filter_by_LPL_region()
         {
             Esports.Standings.SwitchTo(Leagues.LPL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Invictus Gaming"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("FunPlus Phoenix"));
         }
 
         [Test, Parallelizable]
@@ -51,7 +51,7 @@ namespace League.Com.Tests
         public void Filter_by_LCS_academy()
         {
             Esports.Standings.SwitchTo(Leagues.LCS_ACADEMY);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("FlyQuest Academy"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Team Liquid Academy"));
         }
 
         [Test, Parallelizable]
@@ -59,7 +59,7 @@ namespace League.Com.Tests
         public void Filter_by_TCL_region()
         {
             Esports.Standings.SwitchTo(Leagues.TCL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Galatasaray Espor"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Bahçeşehir SuperMassive"));
         }
 
         [Test, Parallelizable]
@@ -75,7 +75,7 @@ namespace League.Com.Tests
         public void Filter_by_LLA_region()
         {
             Esports.Standings.SwitchTo(Leagues.LLA);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("All Knights"));
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Infinity Esports"));
         }
 
         [Test, Parallelizable]
