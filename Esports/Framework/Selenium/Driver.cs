@@ -10,7 +10,9 @@ namespace Framework.Selenium
     public static class Driver
     {
         [ThreadStatic] static IWebDriver _driver;
+
         [ThreadStatic] public static WebDriverWait Wait;
+
         [ThreadStatic] public static WindowManager Window;
 
         public static void Init(string type, string browser, int setWait)
@@ -18,14 +20,14 @@ namespace Framework.Selenium
             _driver = DriverFactory.Build(type, browser);
             Wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(setWait));
             Window = new WindowManager();
-            // Window.Maximize();
+            Window.Maximize();
         }
 
         /// <summary>
         /// Gets the current instance of IWebDriver.
         /// </summary>
         public static IWebDriver Current =>
-            _driver ?? throw new Exception("Driver is null. Call Driver.Init() first.");
+            _driver ?? throw new Exception("_driver is null. Call Driver.Init() first.");
 
         /// <summary>
         /// Gets the title of the current page.
@@ -33,20 +35,7 @@ namespace Framework.Selenium
         public static string Title => Current.Title;
 
         /// <summary>
-        /// Gets the url of the current page.
-        /// </summary>
-        public static string Url => Current.Url;
-
-        /// <summary>
-        /// Navigates back one page in page history.
-        /// </summary>
-        public static void Back()
-        {
-            Current.Navigate().Back();
-        }
-
-        /// <summary>
-        /// Drags an element from it's current position to the location of another element. 
+        /// Drags an element from it's current position to the location of another element.
         /// </summary>
         /// <param name="dragElement">Drag element.</param>
         /// <param name="dropOnElement">Drop element.</param>
@@ -73,8 +62,7 @@ namespace Framework.Selenium
         /// <param name="elementName">Name of element for logging purposes.</param>
         public static Element FindElement(By by, string elementName = "")
         {
-            //return Wait.ForElement(by, elementName);
-            var element = Current.FindElement(by);
+            var element = Wait.Until(drvr => drvr.FindElement(by));
             return new Element(element, elementName);
         }
 
@@ -84,7 +72,6 @@ namespace Framework.Selenium
         /// <param name="by">FindBy mechanism.</param>
         public static Elements FindElements(By by)
         {
-            //return Wait.ForElements(by);
             var elements = Current.FindElements(by);
             return new Elements(elements);
         }
@@ -97,7 +84,6 @@ namespace Framework.Selenium
             if (_driver != null)
             {
                 Current.Quit();
-                Current.Dispose();
             }
         }
 

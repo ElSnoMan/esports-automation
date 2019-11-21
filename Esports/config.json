@@ -1,0 +1,7 @@
+{
+    "driver": {
+        "browser": "chrome",
+        "type": "local",
+        "wait": 30
+    }
+}
