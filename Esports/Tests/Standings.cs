@@ -18,7 +18,7 @@ namespace League.Com.Tests
         [Category("standings"), Category("demo"), Category("lcs")]
         public void Filter_by_LCS_region()
         {
-            // LCS filter selected by default
+            Esports.Standings.SwitchTo(Leagues.LCS, "Regular Season");
             Assert.That(Esports.Standings.FirstPlace.Name.Equals("Team Liquid"));
         }
 
@@ -26,7 +26,7 @@ namespace League.Com.Tests
         [Category("standings"), Category("demo")]
         public void Filter_by_LEC_region()
         {
-            Esports.Standings.SwitchTo(Leagues.LEC);
+            Esports.Standings.SwitchTo(Leagues.LEC, "Regular Season");
             Assert.That(Esports.Standings.FirstPlace.Name.Equals("G2 Esports"));
         }
 
@@ -34,7 +34,7 @@ namespace League.Com.Tests
         [Category("standings")]
         public void Filter_by_LCK_region()
         {
-            Esports.Standings.SwitchTo(Leagues.LCK);
+            Esports.Standings.SwitchTo(Leagues.LCK, "Regular Season");
             Assert.That(Esports.Standings.FirstPlace.Name.Equals("Griffin"));
         }
 
@@ -42,7 +42,7 @@ namespace League.Com.Tests
         [Category("standings")]
         public void Filter_by_LPL_region()
         {
-            Esports.Standings.SwitchTo(Leagues.LPL);
+            Esports.Standings.SwitchTo(Leagues.LPL, "Regular Season");
             Assert.That(Esports.Standings.FirstPlace.Name.Equals("FunPlus Phoenix"));
         }
 
@@ -50,23 +50,23 @@ namespace League.Com.Tests
         [Category("standings")]
         public void Filter_by_LCS_academy()
         {
-            Esports.Standings.SwitchTo(Leagues.LCS_ACADEMY);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Team Liquid Academy"));
+            Esports.Standings.SwitchTo(Leagues.LCS_ACADEMY, "Regular Season");
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Cloud9 Academy"));
         }
 
         [Test, Parallelizable]
         [Category("standings")]
         public void Filter_by_TCL_region()
         {
-            Esports.Standings.SwitchTo(Leagues.TCL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Bahçeşehir SuperMassive"));
+            Esports.Standings.SwitchTo(Leagues.TCL, "Regular Season");
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Royal Youth"));
         }
 
         [Test, Parallelizable]
         [Category("standings")]
         public void Filter_by_CBLOL_region()
         {
-            Esports.Standings.SwitchTo(Leagues.CBLOL);
+            Esports.Standings.SwitchTo(Leagues.CBLOL, "Regular Season");
             Assert.That(Esports.Standings.FirstPlace.Name.Equals("Flamengo eSports"));
         }
 
@@ -74,16 +74,8 @@ namespace League.Com.Tests
         [Category("standings")]
         public void Filter_by_LLA_region()
         {
-            Esports.Standings.SwitchTo(Leagues.LLA);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Infinity Esports"));
-        }
-
-        [Test, Parallelizable]
-        [Category("standings")]
-        public void Filter_by_OPL_region()
-        {
-            Esports.Standings.SwitchTo(Leagues.OPL);
-            Assert.That(Esports.Standings.FirstPlace.Name.Equals("The Chiefs Esports Club"));
+            Esports.Standings.SwitchTo(Leagues.LLA, "Regular Season");
+            Assert.That(Esports.Standings.FirstPlace.Name.Equals("Isurus Gaming"));
         }
     }
 }

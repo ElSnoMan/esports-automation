@@ -1,5 +1,4 @@
-using System.IO;
-using System.Reflection;
+using Framework;
 using Framework.Selenium;
 using League.Com;
 using NUnit.Framework;
@@ -10,20 +9,18 @@ namespace Tests.Base
     {
         protected TestBase()
         {
-            var assembly = Assembly.GetExecutingAssembly().FullName;
-            var path = Path.Combine(assembly, "../../../../../");
-            Directory.SetCurrentDirectory(path);
+            FW.Init();
         }
 
         [SetUp]
         public virtual void Setup()
         {
             Driver.Init(
-                type: TestContext.Parameters["type"],
-                browser: TestContext.Parameters["browser"],
-                setWait: 30
+                type: FW.Config.Driver.Type,
+                browser: FW.Config.Driver.Browser,
+                setWait: FW.Config.Driver.Wait
             );
-            
+
             Esports.Init();
         }
 

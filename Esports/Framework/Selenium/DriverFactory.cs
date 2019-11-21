@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
-using Framework.Settings;
 
 namespace Framework.Selenium
 {
@@ -65,7 +64,7 @@ namespace Framework.Selenium
                         PlatformName = "LINUX",
                     };
 
-                    driver = new RemoteWebDriver(Config.DOCKER_GRID_HUB_URI, firefoxOptions.ToCapabilities());
+                    driver = new RemoteWebDriver(DOCKER_GRID_HUB_URI, firefoxOptions.ToCapabilities());
                     break;
 
                 default:
@@ -75,19 +74,27 @@ namespace Framework.Selenium
             return driver;
         }
 
-
         private static ChromeDriver BuildChromeDriver()
         {
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
 
-            return new ChromeDriver(Config.DRIVER_PATH, options);
+            return new ChromeDriver(FW.WORKSPACE_DIRECTORY + PlatformDriver, options);
         }
-
 
         private static FirefoxDriver BuildFirefoxDriver()
         {
-            return new FirefoxDriver(Config.DRIVER_PATH);
+            return new FirefoxDriver(FW.WORKSPACE_DIRECTORY + PlatformDriver);
+        }
+
+        private static string PlatformDriver
+        {
+            get
+            {
+                return Environment.OSVersion.Platform.ToString().Contains("Win")
+                    ? "_drivers/windows"
+                    : "_drivers/mac";
+            }
         }
     }
 }

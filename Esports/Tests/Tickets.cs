@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Framework.Selenium;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using Tests.Base;
 
 namespace League.Com.Tests
@@ -6,6 +8,14 @@ namespace League.Com.Tests
     [TestFixture]
     public class Tickets : TestBase
     {
+        [Test]
+        public void Goto_test()
+        {
+            Driver.Goto("https://google.com");
+            Driver.FindElement(By.Name("q")).SendKeys("puppies");
+            Driver.FindElement(By.Name("btnK")).Submit();
+        }
+
         [Test]
         public void Cannot_buy_sold_out_tickets()
         {

@@ -18,25 +18,13 @@ namespace League.Com.Pages
         public void Goto()
         {
             Driver.Goto("https://watch.na.lolesports.com/standings");
-            Driver.Wait.Until(driver => WatchMenu.StandingsLink.Displayed);
-            Driver.Wait.Until(driver => Map.FirstRow.Displayed);
+            Driver.Wait.Until(drvr => Map.FirstLeague.Clickable);
         }
 
-        public void SwitchTo(string league)
+        public void SwitchTo(string league, string stage)
         {
-            try
-            {
-                Map.LeagueSelector.Click();
-            }
-            catch
-            {
-                // League Selector not needed
-            }
-
-            Driver.FindElement(
-                by: By.XPath($"//div[@class='name' and text()='{league}']"),
-                elementName: $"{league} League Filter")
-                .Click();
+            Map.LeagueByName(league).Click();
+            Map.StageByName(stage).Click();
 
             Driver.Wait.Until(driver => Map.FirstRow.Displayed);
         }
@@ -46,7 +34,6 @@ namespace League.Com.Pages
         public TeamStanding GetTeamByName(string name)
         {
             var row = Map.TeamRows.FirstOrDefault(r => r.Text.Contains(name));
-
             return _generateTeamStandingFromRow(row);
         }
 
@@ -74,20 +61,31 @@ namespace League.Com.Pages
 
         private TeamStanding _generateTeamStandingFromRow(Element row)
         {
-            var team = new TeamStanding
+            return new TeamStanding
             {
                 Rank = int.Parse(row.FindElement(By.CssSelector(".ordinal")).Text),
                 Name = row.FindElement(By.CssSelector(".team .name")).Text,
                 Record = row.FindElement(By.CssSelector(".team .record")).Text
             };
-
-            return team;
         }
     }
 
     public class StandingsPageMap
     {
-        public Element FirstRow => Driver.FindElement(By.CssSelector(".ranking"));
+        // Leagues
+        public Element FirstLeague => Driver.FindElement(By.CssSelector(".league"), "First League");
+        public Elements Leagues => Driver.FindElements(By.CssSelector(".league"));
+
+        public Element LeagueByName(string name) => Driver.FindElement(
+                by: By.XPath($"//div[@class='name' and text()='{name}']"),
+                elementName: $"{name} League Filter");
+
+        public Element StageByName(string name) => Driver.FindElement(
+            by: By.XPath($"//div[@class='stage-option' and text()='{name}']"),
+            elementName: $"{name} Stage");
+
+        // Teams
+        public Element FirstRow => Driver.FindElement(By.CssSelector(".ranking"), "First Team");
         public Elements TeamRows => Driver.FindElements(By.CssSelector(".ranking"));
 
         // used if screen is too small
