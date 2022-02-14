@@ -2,7 +2,7 @@ version: "3"
 services:
 
   selenium-hub:
-    image: selenium/hub
+    image: selenium/hub:3.141
     ports:
       - "4444:4444"
     environment:
@@ -11,9 +11,9 @@ services:
         GRID_TIMEOUT: 300
 
   chrome:
-    image: selenium/node-chrome
+    image: selenium/node-chrome:3.141.59
     depends_on:
-      - selenium-hub
+      - selenium-hub:3.141
     environment:
       HUB_PORT_4444_TCP_ADDR: selenium-hub
       HUB_PORT_4444_TCP_PORT: 4444
@@ -23,9 +23,9 @@ services:
     #   - /dev/shm:/dev/shm
 
   firefox:
-    image: selenium/node-firefox
+    image: selenium/node-firefox:3.141.59-20210913
     depends_on:
-      - selenium-hub
+      - selenium-hub:3.141
     environment:
       HUB_PORT_4444_TCP_ADDR: selenium-hub
       HUB_PORT_4444_TCP_PORT: 4444
